@@ -5,13 +5,14 @@ import '../../../neubrutalism_ui.dart';
 
 class NeuBottomNav extends StatefulWidget {
   final List<IconData> icons;
-  final Function onIconTap;
+  final Function(int) onIconTap;
   final bool isFloating;
   final double? floatingHeight;
   final double? floatingWidth;
   final double? stackedHeight;
   final double? stackedWidth;
   final Color initialIconColor;
+  final Color selectedIconColor;
   final Color navBarColor;
   final Color? isSelectedColor;
   final bool autoHideOnScroll; // New parameter for auto hide
@@ -22,6 +23,7 @@ class NeuBottomNav extends StatefulWidget {
     Key? key,
     required this.icons,
     required this.initialIconColor,
+    required this.selectedIconColor,
     required this.navBarColor,
     required this.onIconTap,
     this.isFloating = true,
@@ -102,7 +104,7 @@ class _NeuBottomNavState extends State<NeuBottomNav> {
                         widget.onIconTap(i);
                       },
                       child: ClipRRect(
-                        borderRadius: BorderRadius.circular(20),
+                        borderRadius: BorderRadius.circular(12),
                         child: Stack(
                           children: [
                             AnimatedContainer(
@@ -111,13 +113,13 @@ class _NeuBottomNavState extends State<NeuBottomNav> {
                               color: _currentIndex == i
                                   ? widget.isSelectedColor
                                   : Colors.transparent,
-                              width: 100,
-                              height: 100,
+                              width: 48,
+                              height: 32,
                               child: Icon(
                                 widget.icons[i],
-                                size: 40,
+                                size: 24,
                                 color: _currentIndex == i
-                                    ? Color.fromARGB(255, 190, 169, 224)
+                                    ? widget.selectedIconColor
                                     : widget.initialIconColor,
                               ),
                             ),

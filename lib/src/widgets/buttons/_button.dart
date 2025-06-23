@@ -136,6 +136,22 @@ class NeuButtonState extends State<NeuButton>
 
   @override
   Widget build(BuildContext context) {
+    final theme = NeuBrutalismTheme.of(context);
+    final Color buttonColor = widget.buttonColor == neuDefault1
+        ? theme.neuDefault1
+        : widget.buttonColor;
+    final Color shadowColor =
+        widget.shadowColor == neuShadow ? theme.neuShadow : widget.shadowColor;
+    final Color borderColor =
+        widget.borderColor == neuBlack ? theme.neuBlack : widget.borderColor;
+    final double borderWidth =
+        widget.borderWidth == neuBorder ? theme.neuBorder : widget.borderWidth;
+    final double shadowBlurRadius =
+        widget.shadowBlurRadius == neuShadowBlurRadius
+            ? theme.neuShadowBlurRadius
+            : widget.shadowBlurRadius;
+    final Offset offset =
+        widget.offset == neuOffset ? theme.neuOffset : widget.offset;
     return InkWell(
       onTap: () {
         var doOnPressedAction = () => {
@@ -143,15 +159,11 @@ class NeuButtonState extends State<NeuButton>
             };
 
         if (widget.enableAnimation) {
-          // do the on pressed action after the
-          // first part of animation
           _controller.forward().then((value) {
             doOnPressedAction();
             _controller.reverse();
           });
         } else {
-          // do on pressed action without any
-          // animation
           doOnPressedAction();
         }
       },
@@ -161,12 +173,12 @@ class NeuButtonState extends State<NeuButton>
           width: widget.buttonWidth,
           height: widget.buttonHeight,
           borderRadius: widget.borderRadius,
-          color: widget.buttonColor,
-          borderColor: widget.borderColor,
-          borderWidth: widget.borderWidth,
-          shadowColor: widget.shadowColor,
-          shadowBlurRadius: widget.shadowBlurRadius,
-          offset: widget.offset - _animation.value,
+          color: buttonColor,
+          borderColor: borderColor,
+          borderWidth: borderWidth,
+          shadowColor: shadowColor,
+          shadowBlurRadius: shadowBlurRadius,
+          offset: offset - _animation.value,
           child: Center(child: widget.child),
         ),
         builder: (context, child) {

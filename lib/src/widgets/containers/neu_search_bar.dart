@@ -138,16 +138,30 @@ class NeuSearchBar extends StatefulWidget {
 class _NeuSearchBarState extends State<NeuSearchBar> {
   @override
   Widget build(BuildContext context) {
+    final theme = NeuBrutalismTheme.of(context);
+    final double borderWidth =
+        widget.borderWidth == neuBorder ? theme.neuBorder : widget.borderWidth;
+    final double shadowBlurRadius =
+        widget.shadowBlurRadius == neuShadowBlurRadius
+            ? theme.neuShadowBlurRadius
+            : widget.shadowBlurRadius;
+    final Offset shadowOffset = widget.shadowOffset == neuOffset
+        ? theme.neuOffset
+        : widget.shadowOffset;
+    final Color borderColor =
+        widget.borderColor == neuBlack ? theme.neuBlack : widget.borderColor;
+    final Color shadowColor =
+        widget.shadowColor == neuShadow ? theme.neuShadow : widget.shadowColor;
     return NeuContainer(
       height: widget.searchBarHeight,
-      width: widget.searchBarWidth??300,
-      borderRadius: widget.borderRadius??BorderRadius.circular(15),
-      color: widget.searchBarColor??const Color.fromARGB(255, 214, 140, 164),
-      borderColor: widget.borderColor,
-      borderWidth: widget.borderWidth,
-      shadowColor: widget.shadowColor,
-      shadowBlurRadius: widget.shadowBlurRadius,
-      offset: widget.shadowOffset,
+      width: widget.searchBarWidth ?? 300,
+      borderRadius: widget.borderRadius ?? BorderRadius.circular(15),
+      color: widget.searchBarColor ?? const Color.fromARGB(255, 214, 140, 164),
+      borderColor: borderColor,
+      borderWidth: borderWidth,
+      shadowColor: shadowColor,
+      shadowBlurRadius: shadowBlurRadius,
+      offset: shadowOffset,
       child: Row(
         children: [
           SizedBox(width: 6),

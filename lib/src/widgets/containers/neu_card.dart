@@ -119,24 +119,52 @@ class NeuCard extends StatefulWidget {
 class NeuCardState extends State<NeuCard> {
   @override
   Widget build(BuildContext context) {
+    final theme = NeuBrutalismTheme.of(context);
+    final Offset offset =
+        widget.offset == neuOffset ? theme.neuOffset : widget.offset;
+    final Color cardColor =
+        widget.cardColor == null || widget.cardColor == neuDefault1
+            ? theme.neuDefault1
+            : widget.cardColor!;
+    final Color shadowColor =
+        widget.shadowColor == neuShadow ? theme.neuShadow : widget.shadowColor;
+    final Color cardBorderColor = widget.cardBorderColor == neuBlack
+        ? theme.neuBlack
+        : widget.cardBorderColor;
+    final Color imageBorderColor = widget.imageBorderColor == neuBlack
+        ? theme.neuBlack
+        : widget.imageBorderColor;
+    final double cardBorderWidth = widget.cardBorderWidth == neuBorder
+        ? theme.neuBorder
+        : widget.cardBorderWidth;
+    final double shadowBlurRadius =
+        widget.shadowBlurRadius == neuShadowBlurRadius
+            ? theme.neuShadowBlurRadius
+            : widget.shadowBlurRadius;
+    final double imageBorderWidth = widget.imageBorderWidth == neuBorder
+        ? theme.neuBorder
+        : widget.imageBorderWidth;
+    final BlurStyle shadowBlurStyle = widget.shadowBlurStyle == neuBlurStyle
+        ? theme.neuBlurStyle
+        : widget.shadowBlurStyle;
     return Container(
         width: widget.cardWidth,
         height: widget.cardHeight,
         decoration: BoxDecoration(
           borderRadius: widget.borderRadius,
           border: Border.all(
-            color: widget.cardBorderColor,
-            width: widget.cardBorderWidth,
+            color: cardBorderColor,
+            width: cardBorderWidth,
           ),
           boxShadow: [
             BoxShadow(
-              color: widget.shadowColor,
-              blurRadius: widget.shadowBlurRadius,
-              offset: widget.offset,
-              blurStyle: widget.shadowBlurStyle,
+              color: shadowColor,
+              blurRadius: shadowBlurRadius,
+              offset: offset,
+              blurStyle: shadowBlurStyle,
             ),
           ],
-          color: widget.cardColor,
+          color: cardColor,
         ),
         padding: widget.paddingData,
         child: widget.child);

@@ -8,26 +8,48 @@ class MobileView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       backgroundColor: Color(0xFFF0E4E4),
+      bottomNavigationBar: NeuBottomNav(
+          icons: const [
+            Icons.home,
+            Icons.search,
+            Icons.person,
+          ],
+          initialIconColor: Colors.black54,
+          selectedIconColor: Colors.orange,
+          isSelectedColor: Colors.black,
+          navBarColor: Colors.white,
+          onIconTap: (index) {},
+          autoHideOnScroll: false,
+          scrollController: ScrollController()),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            MainView(
-              angle: -0.4,
-              buttonColor: Color(0xFFf4d739),
-              text: 'Mobile View',
+            NeuCheckbox(
+              value: false,
+              onChanged: (v) {},
+              label: Text(
+                '鞋子',
+                style: GoogleFonts.zcoolQingKeHuangYou(),
+              ),
             ),
-            MainView(
-              angle: 0.3,
-              buttonColor: Colors.green,
-              text: 'Under',
+            NeuCheckbox(
+              value: true,
+              onChanged: (v) {},
+              label: Text(
+                'Shoes',
+                style: GoogleFonts.zcoolQingKeHuangYou(),
+              ),
             ),
-            MainView(
-              angle: -0.5,
-              buttonColor: Color(0xFFC99A6F),
-              text: 'Development',
+            NeuSwitch(
+              value: true,
+              onChanged: (v) {},
+            ),
+            NeuSwitch(
+              value: false,
+              onChanged: (v) {},
             ),
             SizedBox(height: 100),
             LinkButtons()

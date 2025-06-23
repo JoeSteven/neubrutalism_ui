@@ -108,24 +108,42 @@ class NeuContainer extends StatefulWidget {
 class NeuContainerState extends State<NeuContainer> {
   @override
   Widget build(BuildContext context) {
+    final theme = NeuBrutalismTheme.of(context);
+    final Offset offset =
+        widget.offset == neuOffset ? theme.neuOffset : widget.offset;
+    final Color color =
+        widget.color == neuDefault1 ? theme.neuDefault1 : widget.color!;
+    final Color shadowColor =
+        widget.shadowColor == neuShadow ? theme.neuShadow : widget.shadowColor;
+    final Color borderColor =
+        widget.borderColor == neuBlack ? theme.neuBlack : widget.borderColor;
+    final double borderWidth =
+        widget.borderWidth == neuBorder ? theme.neuBorder : widget.borderWidth;
+    final double shadowBlurRadius =
+        widget.shadowBlurRadius == neuShadowBlurRadius
+            ? theme.neuShadowBlurRadius
+            : widget.shadowBlurRadius;
+    final BlurStyle shadowBlurStyle = widget.shadowBlurStyle == neuBlurStyle
+        ? theme.neuBlurStyle
+        : widget.shadowBlurStyle;
     return Container(
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
         borderRadius: widget.borderRadius,
         border: Border.all(
-          color: widget.borderColor,
-          width: widget.borderWidth,
+          color: borderColor,
+          width: borderWidth,
         ),
         boxShadow: [
           BoxShadow(
-            color: widget.shadowColor,
-            blurRadius: widget.shadowBlurRadius,
-            offset: widget.offset,
-            blurStyle: widget.shadowBlurStyle,
+            color: shadowColor,
+            blurRadius: shadowBlurRadius,
+            offset: offset,
+            blurStyle: shadowBlurStyle,
           ),
         ],
-        color: widget.color,
+        color: color,
       ),
       child: widget.child,
       clipBehavior: Clip.antiAlias,

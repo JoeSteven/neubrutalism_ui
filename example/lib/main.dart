@@ -2,6 +2,7 @@ import 'package:example/views/mobile_view.dart';
 import 'package:example/widgets/responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:neubrutalism_ui/neubrutalism_ui.dart';
 
 void main() {
   runApp(const NeuLandingSite());
@@ -12,10 +13,14 @@ class NeuLandingSite extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: SiteContent(),
-    ).animate().fadeIn();
+    return const NeuBrutalismTheme(
+        data: NeuBrutalismThemeData(
+          neuDefault1: Colors.orange,
+        ),
+        child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: SiteContent(),
+        )).animate().fadeIn();
   }
 }
 
@@ -31,7 +36,6 @@ class SiteContent extends StatelessWidget {
     );
   }
 }
-
 
 class TabletView extends StatelessWidget {
   const TabletView({Key? key}) : super(key: key);
